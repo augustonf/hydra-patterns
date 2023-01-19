@@ -1,0 +1,26 @@
+// licensed with CC BY-NC-SA 4.0 https://creativecommons.org/licenses/by-nc-sa/4.0/
+// Petri Glitch
+// @kilvox
+
+shape(50, 0.1, 0)
+	.repeat(1, 2)
+	.scale(1, 0.5)
+	.scrollX(0, () => Math.sin(time * 0.1) * 0.001)
+	.scrollY(0, () => Math.cos(time * 0.1) * 0.01)
+	.diff(shape(50, 0.2, 0)
+		.repeat(1, 2)
+		.scale(1, 0.5)
+		.scrollX(0, () => Math.sin(time * 0.05) * 0.001)
+		.scrollY(0, () => Math.cos(time * 0.02) * 0.001))
+	.modulate(noise(3, 0.2), 0.03)
+	.diff(src(o0)
+		.rotate(0.3)
+		.scrollX(0, 0.01)
+		.scrollY(0, 0.01)
+		.mult(osc(1, 0.1, 1)
+			.kaleid(3)), 0.01)
+	.modulateRotate(noise(3, 0.1), 0.1)
+	.scale(0.8)
+	.modulate(o0, 0.0041)
+	.diff(o0)
+	.out()
